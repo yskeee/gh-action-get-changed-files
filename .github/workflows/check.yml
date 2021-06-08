@@ -18,6 +18,8 @@ jobs:
         uses : yskeee/gh-action-get-changed-files@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          ACTIONS_RUNNER_DEBUG: true
 
       - name: Output all changed files
         run: echo ${{ steps.get-changed-files.outputs.all }}
