@@ -395,7 +395,7 @@ async function processCommitData(result) {
 	}
 
 	result.data.files.forEach(file => {
-		(isAdded(file) || isModified(file) || isRenamed(file)) && FILES.add(file.filename);
+		FILES.add(file.filename);
 
 		if (isAdded(file)) {
 			FILES_ADDED.add(file.filename);
@@ -428,7 +428,8 @@ async function processCommitData(result) {
 }
 
 function processRenamedFile(prev_file, new_file) {
-	FILES.delete(prev_file) && FILES.add(new_file);
+	if (! FILES.has(prev_file)) { FILES.add(prev_file); }
+	if (! FILES.has(new_file)) { FILES.add(new_file); }
 	FILES_ADDED.delete(prev_file) && FILES_ADDED.add(new_file);
 	FILES_MODIFIED.delete(prev_file) && FILES_MODIFIED.add(new_file);
 	FILES_RENAMED.add(new_file);
