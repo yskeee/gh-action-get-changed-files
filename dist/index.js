@@ -428,8 +428,8 @@ async function processCommitData(result) {
 }
 
 function processRenamedFile(prev_file, new_file) {
-	if (! FILES.has(prev_file)) { FILES.add(prev_file); }
-	if (! FILES.has(new_file)) { FILES.add(new_file); }
+	FILES.add(prev_file);
+	FILES.add(new_file);
 	FILES_ADDED.delete(prev_file) && FILES_ADDED.add(new_file);
 	FILES_MODIFIED.delete(prev_file) && FILES_MODIFIED.add(new_file);
 	FILES_RENAMED.add(new_file);
